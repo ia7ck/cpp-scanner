@@ -56,5 +56,6 @@ struct Scanner {
       os << ret << " is not in [" << lb << ", " << ub << "]";
       throw std::runtime_error(os.str());
     }
+    return ret;
   }
 };
