@@ -2,11 +2,14 @@
 #include <sstream>
 struct Scanner {
   std::string pp(const char ch) {
-    if (ch == EOF) {
-      return "EOF";
-    } else if (ch == '\n') {
+    switch (ch) {
+    case ' ':
+      return "Space";
+    case '\n':
       return "Newline";
-    } else {
+    case EOF:
+      return "EOF";
+    default:
       return std::string(1, ch);
     }
   }
