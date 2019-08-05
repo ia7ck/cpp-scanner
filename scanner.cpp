@@ -41,8 +41,8 @@ struct Scanner {
     return ret;
   }
   template <typename T>
-  T readInt(T lb, T ub) {
-    char ch = getchar();
+  T readInt(const T lb, const T ub) {
+    auto ch = getchar();
     if ((not isdigit(ch)) and (ch != '-')) {
       ungetc(ch, stdin);
       throw std::runtime_error(std::string("want: [0-9\\-]+, got: ") + pp(ch));
