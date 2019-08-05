@@ -4,7 +4,7 @@
 int main() {
 
   Scanner sc;
-  auto s = sc.readString();
+  auto s = sc.readString(3, 3);
   assert(s == "abc");
   sc.readEof();
 

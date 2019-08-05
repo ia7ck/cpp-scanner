@@ -31,13 +31,19 @@ struct Scanner {
       throw std::runtime_error(std::string("want: EOF, got: ") + pp(ch));
     }
   }
-  std::string readString() {
+  std::string readString(size_t minLength, size_t maxLength) {
     std::string ret;
     char ch;
     while (ch = getchar(), ch != ' ' and ch != '\n' and ch != EOF) {
       ret += ch;
     }
     ungetc(ch, stdin);
+    if (not(minLength <= ret.size() and ret.size() <= maxLength)) {
+      std::ostringstream os;
+      os << "length of " << ret << " is not in [" << minLength << ", "
+         << maxLength << "]";
+      throw std::runtime_error(os.str());
+    }
     return ret;
   }
   template <typename T>
