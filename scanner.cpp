@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 struct Scanner {
   std::string pp(const char ch) {
     if (ch == EOF) {
@@ -47,6 +48,11 @@ struct Scanner {
       ret = ret * 10 + (ch - '0');
     }
     ungetc(ch, stdin);
-    return ret * sgn;
+    ret *= sgn;
+    if (not(lb <= ret and ret <= ub)) {
+      std::ostringstream os;
+      os << ret << " is not in [" << lb << ", " << ub << "]";
+      throw std::runtime_error(os.str());
+    }
   }
 };
