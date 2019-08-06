@@ -40,7 +40,7 @@ struct Scanner {
     ungetc(ch, stdin);
     return ret;
   }
-  std::string readString(size_t minLength, size_t maxLength) {
+  std::string readString(const size_t minLength, const size_t maxLength) {
     std::string ret;
     char ch;
     while (ch = getchar(), ch != ' ' and ch != '\n' and ch != EOF) {
