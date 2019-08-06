@@ -31,6 +31,15 @@ struct Scanner {
       throw std::runtime_error(std::string("want: EOF, got: ") + pp(ch));
     }
   }
+  std::string readLine() {
+    std::string ret;
+    char ch;
+    while (ch = getchar(), ch != '\n' and ch != EOF) {
+      ret += ch;
+    }
+    ungetc(ch, stdin);
+    return ret;
+  }
   std::string readString(size_t minLength, size_t maxLength) {
     std::string ret;
     char ch;
