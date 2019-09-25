@@ -34,3 +34,14 @@ int main() {
   return 0;
 }
 ```
+
+### Struct `Scanner` members
+
+Method | Used In | Description
+--- | --- | ---
+`void readSpace(void)` | space_test.cpp |
+`void readNewline(void)` | newline_test.cpp |
+`void readEof(void)` | eof_test.cpp |
+`std::string readLine()` | lines_test.cpp | Return single line without trailing newline.
+`std::string readString(size_t minLength, size_t maxLength)` | string_test.cpp | Return space separated string.
+`T readInt(T lowerBound, T upperBound)` | int_test.cpp | Usually, `T` = `int` or `long long int`
