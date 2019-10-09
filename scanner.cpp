@@ -5,8 +5,10 @@ struct Scanner {
     switch (ch) {
     case ' ':
       return "Space";
+    case '\r':
+      return "\\r";
     case '\n':
-      return "Newline";
+      return "\\n";
     case EOF:
       return "EOF";
     default:
@@ -21,6 +23,11 @@ struct Scanner {
   }
   void readNewline() {
     auto ch = getchar();
+    if (ch == '\r') {
+      auto nxt_ch = getchar();
+      if (nxt_ch != '\n') ungetc(nxt_ch, stdin);
+      return;
+    }
     if (ch != '\n') {
       throw std::runtime_error(std::string("want: Newline, got: ") + pp(ch));
     }
@@ -34,7 +41,7 @@ struct Scanner {
   std::string readLine() {
     std::string ret;
     char ch;
-    while (ch = getchar(), ch != '\n' and ch != EOF) {
+    while (ch = getchar(), ch != '\r' and ch != '\n' and ch != EOF) {
       ret += ch;
     }
     ungetc(ch, stdin);
@@ -43,7 +50,8 @@ struct Scanner {
   std::string readString(const size_t minLength, const size_t maxLength) {
     std::string ret;
     char ch;
-    while (ch = getchar(), ch != ' ' and ch != '\n' and ch != EOF) {
+    while (ch = getchar(),
+           ch != ' ' and ch != '\r' and ch != '\n' and ch != EOF) {
       ret += ch;
     }
     ungetc(ch, stdin);
